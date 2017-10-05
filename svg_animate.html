@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <script type="text/javascript" src="snap/dist/snap.svg-min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <title>svg animate</title>
+    <style>
+    @keyframes example {
+        0% {
+            height: 100px
+        }
+
+        90% {
+            height: 40px
+        }
+
+        100% {
+            height: 100px;
+        }
+    }
+
+
+
+    #second {
+        background-color: #bbb;
+        animation: example 1.5s infinite;
+    }
+    </style>
+</head>
+
+<body>
+    <svg width="210mm" height="297mm" version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#f60" stroke-width=".26458">
+            <rect id="first" x="38.554" y="62.277" width="27.214" height="117.17" rx="5" ry="5" />
+            <rect id="second" x="73.07" y="62.277" width="27.214" height="117.17" rx="5" ry="5" />
+            <rect id="third" x="107.59" y="62.277" width="27.214" height="117.17" rx="5" ry="5" />
+            <rect id="fourth" x="142.1" y="62.277" width="27.214" height="117.17" rx="5" ry="5" />
+        </g>
+    </svg>
+    <script type="text/javascript">
+    var element = document.getElementById('first');
+
+    TweenMax.fromTo('#first', 1.5, {
+        css: {
+            transform: 'scaleY(0)'
+        }
+    }, {
+        css: {
+            transform: 'scaleY(1)'
+        },
+        repeat: 3
+    })
+    </script>
+</body>
+
+</html>

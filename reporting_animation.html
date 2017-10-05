@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+    @keyframes pulse {
+        0% {
+            transform: scale(1.0);
+        }
+
+        30% {
+            transform: scale(1.2);
+        }
+
+        100% {
+            transform: scale(1.0);
+        }
+    }
+
+    #reportingTable {
+        /*animation: pulse 1s infinite;*/
+    }
+    </style>
+    <title>reporting animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <style type="text/css">
+    	
+    	body {
+    		display: flex;
+    		flex-direction: column;
+    		align-items: center;
+    		background: linear-gradient(to bottom right,  #1e5799 0%,#2989d8 50%,#207cca 50%,#7db9e8 100%) no-repeat;
+    	}
+
+    </style>
+</head>
+
+<body>
+    <svg width="350px" height="500px" version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+    <g id="Laptop" transform="matrix(.26458 0 0 .26458 10.494 31.773)" stroke="#8492a5">
+        <path d="m594 0h-496c-13.496 0-25 11.074-25 24.79v326.24l546-1e-5v-326.24c-3e-5 -13.717-11.463-24.79-25-24.79z" fill="#ccc" stroke-width="2"/>
+        <circle id="webcam" cx="347" cy="19" r="4" fill="#fff" stroke-width="2"/>
+        <g id="bottom" transform="translate(0,351)" fill="#e6e6e6">
+            <path id="Shape" d="m640.81 31.01h-589.52c-30.647 0-51.288-10.516-51.288-14.988v-13.594c0-1.344 1.335-2.428 2.995-2.428h686.11c1.662 0 2.999 1.084 2.999 2.428v14.129c-7e-3 3.535-15.991 14.453-51.291 14.453z" stroke-width="2"/>
+            <path id="Line" d="m0.5 14.5h689.74" stroke-linecap="square"/>
+        </g>
+        <rect x="95" y="39" width="501.07" height="292.01" fill="#fff"/>
+        <path id="touchpad" d="m421 352v3.087c0 2.201-4.3333 2.8657-7.6133 2.8657h-134.57c-3.451 0-7.8153-0.66371-7.8153-2.8657v-3.087" fill="#b3b3b3"/>
+    </g>
+    <g transform="matrix(.65068 0 0 .65068 36.318 29.969)" stroke="#4d4d4d" stroke-width=".2" id="reportingTable">
+        <g stroke-linejoin="round" >
+            <rect x="62.356" y="51.117" width="78.64" height="11.913" fill="#999"/>
+            <rect x="62.343" y="63.042" width="78.665" height="8.2436" fill="#ccc"/>
+            <rect x="62.343" y="71.286" width="78.665" height="8.2436" fill="#ececec"/>
+            <rect x="62.343" y="79.529" width="78.665" height="8.2436" fill="#ccc"/>
+            <path d="m62.343 87.773h78.665v8.2436h-78.665z" fill="#ececec"/>
+            <rect x="62.343" y="96.017" width="78.665" height="8.2436" fill="#ccc"/>
+        </g>
+        <path d="m87.388 104.18v-41.231" fill="none"/>
+        <path d="m116.17 104.26v-41.231" fill="none"/>
+    </g>
+</svg>
+
+    <script type="text/javascript">
+    var pulses = 0;
+
+    function pulseGrow(selector) {
+        if (pulses < 2) {
+            var t1 = new TimelineMax();
+            t1.to(selector, 0.2, {
+                transformOrigin: "center",
+                scale: 1.2,
+                onComplete: function() {
+                    pulseShrink(selector)
+                }
+            });
+        } else {
+            raceOut(selector);
+        }
+    }
+
+    function pulseShrink(selector) {
+        var t1 = new TimelineMax();
+        t1.to(selector, 0.3, {
+            scale: 1,
+            transformOrigin: "center",
+            onComplete: function() {
+                pulseGrow(selector)
+            }
+        })
+
+        pulses += 1;
+    }
+
+    function raceOut(selector) {
+        var t1 = new TimelineMax();
+        t1.to(selector, 0.15, {
+            scaleX: 0,
+            scaleY: 0.6,
+            transformOrigin: "center"
+        })
+    }
+
+    pulseGrow('#reportingTable');
+    </script>
+</body>
+
+</html>
